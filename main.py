@@ -9,7 +9,10 @@ def get_session()
     return response
 
 
-def get_api_response(BASE_URL:str, headers:dict, food_item:str):
+def generate_data():
+    return df
+
+def get_data(BASE_URL:str, headers:dict, food_item:str):
     params = {
         'query':food_item,
         'page' : 1
@@ -29,6 +32,9 @@ def get_api_response(BASE_URL:str, headers:dict, food_item:str):
             print(f'Reached to end for the {food_item}')
             return data
 
+
+        for item in response.json()['items']:
+            pass
 
         # Stopping after 15 pages (Force Stop in case of infinite loop)
         if page == 15: 
@@ -59,7 +65,7 @@ def main():
     for food_item in food_items:
 
 
-        data = get_api_response(BASE_URL, headers, food_item)
+        data = get_data(BASE_URL, headers, food_item)
 
     
 
